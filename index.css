@@ -1,0 +1,74 @@
+
+/* || RESET */
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* || BODY */
+body {
+    background-color: rgba(47, 124, 124, 0.363);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+    font-weight: bold;
+    padding: 23px;
+}
+
+/* || CALCULATOR-GRID */
+.container {
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+/* || BUTTONS*/
+.container button {
+    outline: none;
+    border: 1px solid #5e49493d;
+    background-color: #1b6c7ac7;
+    transition: all 0.4s ease-in-out;
+}
+.container .input-screen {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+/* || HOVER */ 
+ .container button:hover {
+    background-color: rgb(30, 118, 196);
+
+ }
+
+
+/* || AC AND ADDITION BUTTONS */
+.container .two {
+    grid-column: span 2;
+}
+
+/* || INPUT SCREEN */
+.input-screen {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, 0.507);
+    color: rgb(212, 210, 207);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    padding: 15px;
+    align-items: flex-end;
+}
+
+.current-operand {
+    font-size: 2.3rem;
+   word-break: break-all;
+   word-wrap: break-word;
+}
+
+.previous-operand {
+    font-size: 1.5rem;
+}
