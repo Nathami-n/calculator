@@ -12,6 +12,7 @@ class Calculator {
   clear() {
     this.currentOperand = "";
     this.previousOperand = "";
+    this.operator = undefined;
   }
 
   //appendNumber
@@ -65,8 +66,18 @@ class Calculator {
       switch(operator) {
         case '+':
             value = parseFloat(firstString) + parseFloat(secondString);
+            break;
         case '-': 
             value = parseFloat(secondString) - parseFloat(firstString);
+            break;
+        case '/': 
+            value = parseFloat(secondString) / parseFloat(firstString);
+            break;
+        case '*': 
+            value = parseFloat(firstString) * parseFloat(secondString);
+            break;
+        default: 
+        console.error('invalie operator')
       }
       
       this.currentOperand = value;
