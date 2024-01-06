@@ -32,22 +32,43 @@ class Calculator {
       operandString.pop();
       this.currentOperand = operandString.join("");
     } else if (this.previousOperand && !this.currentOperand) {
-        this.currentOperand = this.previousOperand;
-        this.previousOperand = '';
+      this.currentOperand = this.previousOperand;
+      this.previousOperand = "";
     } else if (this.currentOperand && this.previousOperand) {
-        this.currentOperand = this.previousOperand + " " + this.currentOperand;
-        this.previousOperand = '';
+      this.currentOperand = this.previousOperand + " " + this.currentOperand;
+      this.previousOperand = "";
     }
   }
 
   //update the display
-  displayUpdate() {
+  displayUpdate(value) {
     this.currentOperandElement.innerText = this.currentOperand;
     this.previousOperandElement.innerText = this.previousOperand;
   }
 
   //do calculations
-  workOut() {}
+  workOut() {
+    let current = this.currentOperand;
+    let previous = this.previousOperand;
+    //get the operation
+    const operator = previous.match(/[*/+-]/g);
+    operator.forEach((operator) => {
+        let sum = 0;
+      if (operator === "+") {
+        let first = parseInt(current);
+        let arr = previous.split("");
+        arr.splice(arr.length - 1, 1);
+        let second = arr;
+        let secondString = second.join("");
+        sum = parseInt(first) + parseInt(secondString);
+        this.previousOperand = '';
+        this.currentOperand = sum;
+
+      }
+
+      return sum;
+    });
+  }
 }
 
 // Getting all the calculator elements
@@ -96,4 +117,5 @@ operationButtons.forEach((operationButton) => {
 //doing the actual calculation
 computeButton.addEventListener("click", () => {
   calculator.workOut();
+  calculator.displayUpdate();
 });
