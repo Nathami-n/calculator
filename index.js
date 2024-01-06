@@ -53,26 +53,25 @@ class Calculator {
     //get the operation
     const operator = previous.match(/[*/+-]/g);
     operator.forEach((operator) => {
-      let sum = 0;
-      if (operator === "+") {
-        let first = parseInt(current);
-        let arr = previous.split("");
-        arr.splice(arr.length - 1, 1);
-        let second = arr;
-        let secondString = second.join("");
-        sum = parseInt(first) + parseInt(secondString);
-        this.previousOperand = "";
-        this.currentOperand = sum;
-      } else if (operator === "-") {
-        let first = parseInt(current);
-        let arr = previous.split("");
-        arr.splice(arr.length - 1, 1);
-        let second = arr;
-        let secondString = second.join("");
-        sum = parseInt(secondString) - parseInt(first);
-        this.previousOperand = "";
-        this.currentOperand = sum;
+      let value = 0;
+      let firstString = parseInt(current);
+      let arr = previous.split("");
+      arr.splice(arr.length - 1, 1);
+      let second = arr;
+      let secondString = second.join("");
+       
+      //using the switch statement to implement DRY
+
+      switch(operator) {
+        case '+':
+            value = parseFloat(firstString) + parseFloat(secondString);
+        case '-': 
+            value = parseFloat(secondString) - parseFloat(firstString);
       }
+      
+      this.currentOperand = value;
+      this.previousOperand = '';
+
     });
   }
 }
